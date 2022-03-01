@@ -28,7 +28,8 @@ import com.ecommerce.Color;
 import com.ecommerce.EProduct;
 import com.ecommerce.Finance;
 import com.ecommerce.HibernateUtil;
-import com.ecommerce.PDescription;
+import com.ecommerce.OS;
+import com.ecommerce.ScreenSizes;
 
 /**
 * Servlet implementation class ProductDetails
@@ -62,42 +63,43 @@ public class ProductDetails extends HttpServlet {
                         
                          PrintWriter out = response.getWriter();
                          out.println("<html><body>");
-                         
-                         out.println("<b>One to One Mapping</b><br>");
+                         out.println("<b>Product Listing</b><br>");
                          for(EProduct p: list) {
                                  out.println("ID: " + String.valueOf(p.getID()) + ", Name: " + p.getName() +
                                                  ", Price: " + String.valueOf(p.getPrice()) + ", Date Added: " + p.getDateAdded().toString());
-                                 PDescription descrip = p.getPdescrip();
-                                 out.println("<br>Description:" + descrip.getDescrip());
-                                 out.println("<hr>");
-                         }                       
-                         out.println("<b>One to Many and Many to One Mapping</b><br>");
-                         for(EProduct p: list) {
-                                 out.println("ID: " + String.valueOf(p.getID()) + ", Name: " + p.getName() +
-                                                 ", Price: " + String.valueOf(p.getPrice()) + ", Date Added: " + p.getDateAdded().toString());                           
-                                 List<Color> colors = p.getColors();
-                                 out.println("<br>Colors: <ul>");
-                                 for(Color c: colors) {
-                                         out.print("<li>" + c.getName() + "</li>");
-                                 }
-                                 out.println("</ul>");
-                                 out.println("<hr>");
                                  
-                         }
-                         out.println("<b>Many to Many Mapping</b><br>");
-                         for(EProduct p: list) {
-                                 out.println("ID: " + String.valueOf(p.getID()) + ", Name: " + p.getName() +
-                                                 ", Price: " + String.valueOf(p.getPrice()) + ", Date Added: " + p.getDateAdded().toString());
-                                 Set<Finance> finances= p.getFinance();
-                                 out.println("<br>Finance Options : <ul>");
-                                 for(Finance f: finances) {
-                                         out.print("<li>" + f.getFtype() + "</li>");
+                                 List<Color> colors = p.getColors();
+                                 out.println("Colors: ");
+                                 for(Color c: colors) {
+                                         out.print(c.getName() + "&nbsp;");
                                  }
-                                 out.println("</ul>");
+                                 
+                                 Collection<ScreenSizes> sizes= p.getScreensizes();
+                                 out.println(", Screen Sizes: ");
+                                 for(ScreenSizes s: sizes) {
+                                         out.print(s.getSize() + "&nbsp;");
+                                 }
+                                 
+                                 Set<OS> os= p.getOs();
+                                 out.println(", OS : ");
+                                 for(OS o: os) {
+                                         out.print(o.getName() + "&nbsp;");
+                                 }
+                                 
+                                 Map finances = p.getFinance();
+                                 out.println(", Finance Options: ");
+                                 if (finances.get("CREDITCARD") != null) {
+                                        Finance f = (Finance) finances.get("CREDITCARD");
+                                        out.println(f.getName() + " &nbsp;");
+                                 }
+                                 if (finances.get("BANK") != null) {
+                                        Finance f = (Finance) finances.get("BANK");
+                                        out.println(f.getName() + " &nbsp;");
+                                 }
+                                 
+                                 
                                  out.println("<hr>");
                          }
-                         
-                         
                                 session.close();
 
                      out.println("</body></html>");
