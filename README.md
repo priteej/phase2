@@ -14,3 +14,5 @@ https://github.com/priteej/phase2/blob/main/ProductDetails.java
 https://github.com/priteej/phase2/blob/main/DBConnectDemo.java
 
 https://github.com/priteej/phase2/blob/main/DemoJDBC.java
+
+https://github.com/priteej/phase2/blob/main/ProductBean.java
