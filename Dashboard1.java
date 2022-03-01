@@ -1,6 +1,4 @@
 import java.io.*;
-import java.io.PrintWriter;
-
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
@@ -8,16 +6,16 @@ import javax.servlet.http.*;
 
 
 /**
-* Servlet implementation class LoginServlet
+* Servlet implementation class Dashboard
 */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/Dashboard")
+public class Dashboard extends HttpServlet {
         private static final long serialVersionUID = 1L;
        
     /**
 * @see HttpServlet#HttpServlet()
 */
-    public LoginServlet() {
+    public Dashboard() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,18 +25,18 @@ public class LoginServlet extends HttpServlet {
          */
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
                 // TODO Auto-generated method stub
-                 PrintWriter out = response.getWriter();
-                 out.println("<html><body>");
-                    
-                 String userId = request.getParameter("userid");
-                 //creating a new hidden form field
-                out.println("<form action='dashboard' method='post'>");
-                out.println("<input type='hidden' name='userid' id='userid' value='"+userId+"'>");
-                out.println("<input type='submit' value='submit' >");
-                out.println("</form>");
-                out.println("<script>document.forms[0].submit();</script>");
-              
+        
+            PrintWriter out = response.getWriter();
+            out.println("<html><body>");
+            String userId = request.getParameter("userid");
+            if (userId == null) {
+                out.println("No UserId was found in hidden form field.<br>");
+            } else {
+                out.println("UserId found in hidden form field: " + userId + "<br>");
                 
+            }
+            out.println("</body></html>");
+
         }
 
         /**
@@ -50,8 +48,4 @@ public class LoginServlet extends HttpServlet {
         }
 
 }
-
-
-
-
 

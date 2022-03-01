@@ -7,15 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Dashboard
+ * Servlet implementation class LoginServlet1
  */
-public class Dashboard extends HttpServlet {
+public class LoginServlet1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Dashboard() {
+    public LoginServlet1() {
         super();
         // TODO Auto-generated constructor stub
     }
