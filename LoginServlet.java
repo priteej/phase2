@@ -27,10 +27,7 @@ public class LoginServlet extends HttpServlet {
                 // TODO Auto-generated method stub
                 
                  String userId = request.getParameter("userid");
-                 HttpSession session=request.getSession();  
-             session.setAttribute("userid",  userId);
-                          
-             response.sendRedirect("dashboard");  
+             response.sendRedirect("dashboard?userid=" + userId);  
                 
         }
 
@@ -43,4 +40,5 @@ public class LoginServlet extends HttpServlet {
         }
 
 }
+
 
