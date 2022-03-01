@@ -1,53 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
-<%@ page errorPage = "handle-error.jsp" %>    
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
+
 <!DOCTYPE html>
+<!--
+Download jstl.jar from http://central.maven.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.jar
+-->
 <html>
 <head>
 <meta charset="UTF-8">
-<title>JSP Implicit Objects</title>
+<title>JSP Directives</title>
 </head>
 <body>
 
-<%
-        String responseCheck = request.getParameter("office");
-        if (responseCheck != null ) {
-                 response.setStatus(response.SC_MOVED_TEMPORARILY);
-                 response.setHeader("Location", "response-redirect.jsp?office=" + responseCheck);
-        }
-        
-        String errorCheck = request.getParameter("error");
-        if (errorCheck != null ) {
-                 int x = 0;
-                 if (x == 0)
-                         throw new RuntimeException("Exception has been raised");
-        }
-%>
-<%
+This is content from the main file.
+<%@ include file="included.jsp" %>
+<hr>
+Example of using JSTL taglibs for formatting output<br>
+<p>
+        Currency = <fmt:formatNumber value = "145" type = "currency"/>
+<p>
+<p>
+        <c:set var = "now" value = "<%= new java.util.Date()%>" />
+        Current date and time is <fmt:formatDate pattern = "yyyy-MM-dd hh:mm:ss" value = "${now}" />
+</p>
 
-   int serverPort =  request.getServerPort() ;
-   out.println("The Server is running on port " + String.valueOf(serverPort) + "<br>");
-   out.println("Servlet Name is " + config.getServletName() + "<br>");
-   out.println("Server Info:" + application.getServerInfo() + "<br>");
-   
-   String pageName = page.toString();
-   out.println("The name of the page is " + pageName + "<br>");
-   
-   pageContext.setAttribute("userid", "John Doe");
-   out.println("userId attribute from pageContext: " + pageContext.getAttribute("userid") + "<br>");    
-%>
-<a href="index.jsp?office=head_office">Show usage of response object</a><br>
-<a href="index.jsp?error=1">Show usage of error  object</a><br>
-
-
-<%
-   if (response.containsHeader("Office"))
-            out.println("Current location is " + response.getHeader("Office"));
- %>
- 
-
-
-
- 
 </body>
 </html>
+
+
+
+
 
