@@ -22,3 +22,5 @@ https://github.com/priteej/phase2/blob/main/UserLogin.java
 https://github.com/priteej/phase2/blob/main/Dashboard.java
 
 https://github.com/priteej/phase2/blob/main/LoginServlet.java
+
+https://github.com/priteej/phase2/blob/main/NameServlet.java
