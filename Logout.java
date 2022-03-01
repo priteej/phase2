@@ -1,21 +1,21 @@
 import java.io.*;
-import javax.servlet.*;
-import javax.servlet.annotation.*;
-import javax.servlet.http.*;
+import java.io.PrintWriter;
 
-
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
-* Servlet implementation class LoginServlet
+* Servlet implementation class Logout
 */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
-        private static final long serialVersionUID = 1L;
-       
-    /**
+@WebServlet("/Logout")
+public class Logout extends HttpServlet {
+        /**
 * @see HttpServlet#HttpServlet()
 */
-    public LoginServlet() {
+    public Logout() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -25,13 +25,12 @@ public class LoginServlet extends HttpServlet {
          */
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
                 // TODO Auto-generated method stub
-                
-                 String userId = request.getParameter("userid");
-                 HttpSession session=request.getSession();  
-             session.setAttribute("userid",  userId);
-                          
-             response.sendRedirect("dashboard");  
-                
+                HttpSession session=request.getSession();  
+                session.invalidate();          
+                PrintWriter out = response.getWriter();
+                out.println("<html><body>");
+            out.println("Logged out of session.<br>");
+            out.println("</body></html>");
         }
 
         /**
@@ -43,5 +42,4 @@ public class LoginServlet extends HttpServlet {
         }
 
 }
-
 
