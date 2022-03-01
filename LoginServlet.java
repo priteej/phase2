@@ -26,8 +26,9 @@ public class LoginServlet extends HttpServlet {
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
                 // TODO Auto-generated method stub
                 
-                 String userId = request.getParameter("userid");
-             response.sendRedirect("dashboard?userid=" + userId);  
+                 Cookie userId = new Cookie("userid", request.getParameter("userid"));
+                 response.addCookie(userId);
+              response.sendRedirect("dashboard");  
                 
         }
 
